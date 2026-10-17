@@ -1,0 +1,21 @@
+services:
+
+  backend:
+    build: ./backend
+    container_name: backend
+    networks:
+      - three-tier-net
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    networks:
+      - three-tier-net
+
+networks:
+  three-tier-net:
+    driver: bridge
